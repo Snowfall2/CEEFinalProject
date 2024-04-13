@@ -1,25 +1,18 @@
-import "dotenv/config";
-import "./config/db.js";
+require('dotenv').config()
 
-import app from "./app.js";
+const express = require('express')
+const app = express()
+const mongoose = require('mongoose')
+const cors = require('cors')
 
-// This is for maintaining the server.
-process.on("uncaughtException", (err) => {
-  console.log("UNCAUGHT EXCEPTION! 💥 Shutting down...");
-  console.log(err.name, err.message);
-  console.log(err.stack);
-  process.exit(1);
-});
+mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
+const db = mongoose.connection
+db.on('error', (error) => console.error(error))
+db.once('open', () => console.log('Connected to Database'))
 
-process.on("unhandledRejection", (err) => {
-  console.log("UNHANDLED REJECTION! 💥 Shutting down...");
-  console.log(`${err}`);
-  server.close(() => {
-    process.exit(1);
-  });
-});
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
 
-const PORT = 3222;
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Backend Server ready at http://localhost:${PORT}`);
-});
+app.use(cors());
+
+app.listen(3000, () => console.log('Server Started'))
