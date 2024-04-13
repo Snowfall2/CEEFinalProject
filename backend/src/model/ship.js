@@ -16,4 +16,4 @@ const shipSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Ships', shipSchema)
+module.exports = shipSchema

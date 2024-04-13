@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Ship = require('ship')
+const Ship = require('./ship')
 
 const playerSchema = new mongoose.Schema({
     name: {
@@ -11,11 +11,11 @@ const playerSchema = new mongoose.Schema({
         immutable: true,
         default: "alive"
     },
-    board: {
+    board: { 
         type: Array,
         required: true
     },
     ship: [Ship]
 })
 
-module.exports = mongoose.model('Player', playerSchema)
+module.exports = playerSchema

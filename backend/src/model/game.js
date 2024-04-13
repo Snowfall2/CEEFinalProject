@@ -6,7 +6,7 @@ const gameSchema = new mongoose.Schema({
         type: Number,
         require: true
     },
-    player: [Player]
+    // player: [Player]
 })
 
 module.exports = mongoose.model('Game', gameSchema)

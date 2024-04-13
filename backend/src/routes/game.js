@@ -2,19 +2,26 @@ const express = require('express')
 const router = express.Router()
 const Game = require('../model/game')
 
-// Find Game Lobby and Get All players
-router.get('/:game_id', async (req, res) => {
-    const lobby = await Game.find({ lobbyPIN: req.params.game_id })
+router.get('/', async (req, res) => {
+    try {
+        const game = await Game.find()
+        res.json(game)
+    } catch (err) {
+        res.status(500).json({ message: err.message })
+    }
 })
 
-/* Get A Player
-   Check if the username already exists */
-router.get('/:game_id/:player_name', (req, res) => {
-
+router.post('/', async (req, res) => {
+    const game = new Game({
+        lobbyPIN: req.body.lobbyPIN
+    })
+    try {
+        const newGame = await game.save()
+        res.status(201).json(newGame) 
+    } catch (err) {
+        res.status(400).json({ message: err.message })
+    }
 })
 
-// Add new player
-router.post('/:game_id', (req, res) => {
-
-})
+module.exports = router;
 
