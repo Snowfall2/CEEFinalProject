@@ -2,9 +2,34 @@ GET http://localhost:3000/
 
 ###
 
+GET http://localhost:3000/1234
+
+###
+
+GET http://localhost:3000/1234/Ken
+
+###
+
 POST http://localhost:3000/
 Content-Type: application/json
 
 {
     "lobbyPIN": 1234554
 }
+
+###
+
+POST http://localhost:3000/1234
+Content-Type: application/json
+
+{
+    "name": "PP"
+}
+
+###
+
+DELETE http://localhost:3000/1234554
+
+###
+
+DELETE http://localhost:3000/1234/PP
