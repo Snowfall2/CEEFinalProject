@@ -36,7 +36,7 @@ DELETE http://localhost:3000/1234/PP
 
 ###
 
-POST http://localhost:3000/setup/1234
+POST http://localhost:3000/1234/setup
 Content-Type: application/json
 
 {
@@ -60,9 +60,18 @@ Content-Type: application/json
 
 {
     "name": "Kant",
-    "position": 14
+    "position": 5
 }
 
 ###
 
-GET http://localhost:3000/1234/Kant/status
+POST http://localhost:3000/1234/Kant/status
+
+###
+
+POST http://localhost:3000/1234/deadship
+Content-Type: application/json
+
+{
+    "name": "Kant"
+}

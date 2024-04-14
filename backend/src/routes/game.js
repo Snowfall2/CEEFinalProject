@@ -3,11 +3,13 @@ const router = express.Router()
 
 const getGame = require('./middleware')
 
-// Check if the player is dead
-router.get('/:lobbyPIN/:player_name/status', getGame, async (req, res) => {
+// Check if the player is dead and change his status to "dead"
+router.post('/:lobbyPIN/:player_name/status', getGame, async (req, res) => {
     try {
         const player = res.game.player.find(player => player.name === req.params.player_name)
         if (player.ship.filter(ship => ship.status === "alive").length == 0) {
+            res.game.player.find(player => player.name === req.params.player_name).status = "dead"
+            await res.game.save()
             return res.json({ message: "This player is dead" })
         }
         return res.json({ message: "This player is alive" })
@@ -44,7 +46,6 @@ router.post('/:lobbyPIN/deadship', getGame, async (req, res) => {
             if (!shipIsAlive(player.ship[i].position, player.board)) {
                 deadShip = player.ship
                 res.game.player.find(player => player.name === req.body.name).ship[i].status = "dead"
-                break
             }
         }
         await res.game.save()
@@ -56,11 +57,10 @@ router.post('/:lobbyPIN/deadship', getGame, async (req, res) => {
 
 function shipIsAlive(shipPosition, playerBoard) {
     for (let i = 0; i < shipPosition.length; i++) {
-        const x = shipPosition[i][0]
-        const y = shipPosition[i][1]
+        const pos = shipPosition[i]
         
         // 0 - not attacked,  1 - attacked
-        if (playerBoard[x][y] == 0) return true
+        if (playerBoard[pos] == 0) return true
     }
     return false
 }
