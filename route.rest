@@ -6,7 +6,7 @@ GET http://localhost:3000/1234
 
 ###
 
-GET http://localhost:3000/1234/Ken
+GET http://localhost:3000/1234/Kant
 
 ###
 
@@ -14,7 +14,7 @@ POST http://localhost:3000/
 Content-Type: application/json
 
 {
-    "lobbyPIN": 1234554
+    "lobbyPIN": 1234
 }
 
 ###
@@ -23,7 +23,7 @@ POST http://localhost:3000/1234
 Content-Type: application/json
 
 {
-    "name": "PP"
+    "name": "Kant"
 }
 
 ###
@@ -33,3 +33,36 @@ DELETE http://localhost:3000/1234554
 ###
 
 DELETE http://localhost:3000/1234/PP
+
+###
+
+POST http://localhost:3000/setup/1234
+Content-Type: application/json
+
+{
+    "name": "Kant",
+    "ship": [
+        {
+            "name": "Freegate",
+            "position": [7, 8, 9]  
+        },
+        {
+            "name": "Submarine",
+            "position": [3, 4, 5]
+        }
+    ]
+}        
+
+###
+
+PATCH http://localhost:3000/1234/attack
+Content-Type: application/json
+
+{
+    "name": "Kant",
+    "position": 14
+}
+
+###
+
+GET http://localhost:3000/1234/Kant/status

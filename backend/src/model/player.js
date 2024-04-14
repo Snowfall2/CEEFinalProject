@@ -10,8 +10,8 @@ const playerSchema = new mongoose.Schema({
         default: "alive"
     },
     board: { 
-        type: Array,
-        default: Array.from({ length: 10 }, () => Array(10).fill(0))
+        type: String,
+        default: "0".repeat(100)
     },
     ship: [Ship]
 })

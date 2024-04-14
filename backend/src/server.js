@@ -20,6 +20,6 @@ app.use(cors());
 // Use Routes
 app.use('/', require('./routes/lobby'))
 app.use('/setup', require('./routes/setup'))
-// app.use('/game', require('./routes/game'))
+app.use('/', require('./routes/game'))
 
 app.listen(3000, () => console.log('Server Started'))
