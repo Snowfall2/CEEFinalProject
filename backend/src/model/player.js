@@ -10,11 +10,11 @@ const playerSchema = new mongoose.Schema({
         immutable: true,
         default: "alive"
     },
-    // board: { 
-    //     type: Array,
-    //     required: true
-    // },
-    // ship: [Ship]
+    board: { 
+        type: Array,
+        default: Array(10).fill(Array(10).fill(false))
+    },
+    ship: [Ship]
 })
 
 module.exports = playerSchema

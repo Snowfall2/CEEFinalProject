@@ -20,5 +20,5 @@ app.use(cors());
 
 // Use Routes
 app.use('/', gameRouter)
-
+console.log(process.env.DATABASE_URL)
 app.listen(3000, () => console.log('Server Started'))

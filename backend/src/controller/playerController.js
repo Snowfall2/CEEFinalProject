@@ -1,4 +1,4 @@
-import { shipIsAlive } from "./shipController"
+import { shipIsAlive } from "shipController"
 
 export const playerIsAlive = (playerShip) => {
     // check the status of all player's ship
@@ -24,7 +24,6 @@ export const playerAttack = (otherBoard, attackedPosition) => {
         (otherBoard[i])[x][y] = 1
     }
 }
-
 
 
 

@@ -28,6 +28,19 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:3000/1234/PP
+Content-Type: application/json
+
+{
+    "name": "Boat",
+    "posX": 0,
+    "posY": 2,
+    "size": 3,
+    "rotation": false
+}
+
+###
+
 DELETE http://localhost:3000/1234554
 
 ###
