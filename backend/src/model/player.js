@@ -7,14 +7,13 @@ const playerSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        immutable: true,
         default: "alive"
     },
-    // board: { 
-    //     type: Array,
-    //     required: true
-    // },
-    // ship: [Ship]
+    board: { 
+        type: Array,
+        default: Array.from({ length: 10 }, () => Array(10).fill(0))
+    },
+    ship: [Ship]
 })
 
 module.exports = playerSchema

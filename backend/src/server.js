@@ -4,7 +4,6 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const cors = require('cors')
-const gameRouter = require('./routes/game')
 
 mongoose.connect(process.env.DATABASE_URL)
 const db = mongoose.connection
@@ -19,6 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // Use Routes
-app.use('/', gameRouter)
+app.use('/', require('./routes/lobby'))
+app.use('/setup', require('./routes/setup'))
+// app.use('/game', require('./routes/game'))
 
 app.listen(3000, () => console.log('Server Started'))
