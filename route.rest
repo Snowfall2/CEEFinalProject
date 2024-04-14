@@ -55,17 +55,22 @@ Content-Type: application/json
 
 ###
 
-PATCH http://localhost:3000/1234/attack
+POST http://localhost:3000/1234/attack
 Content-Type: application/json
 
 {
     "name": "Kant",
-    "position": 5
+    "position": 19
 }
 
 ###
 
-POST http://localhost:3000/1234/Kant/status
+POST http://localhost:3000/1234/status
+Content-Type: application/json
+
+{
+    "name": "Kant"
+}
 
 ###
 
