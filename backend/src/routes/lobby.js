@@ -46,6 +46,9 @@ router.post('/:lobbyPIN', getGame, async (req, res) => {
         if (player != null) {
             return res.json({ message: "Player with this username already exists in this room" })
         }
+        if (res.game.player.length == 4) {
+            return res.json({ message: "Lobby is full" })
+        }
         res.game.player.push({ name: req.body.name })
         const newPlayer = await res.game.save()
         res.json(newPlayer)
