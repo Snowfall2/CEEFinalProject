@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Battle Ships</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat&display=swap" rel="stylesheet">
+    <script>
+      let gameMode = 'singlePlayer'
+    </script>
+    <script src="app.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <div  id="submit"><button onclick="submit()">Sumbit</button> </div>
+    <div class="container">
+      <div class="battleship-grid grid-user"></div>
+    </div>
+    <div class="select">
+        <div id="selected">
+        </div>
+        <div id="ship">
+            <div><img src="image/2block.png" width="10vmin" id="i2block" onclick='selectfunc(this,2)'></div>
+            <div><img src="image/3block.png" id="i3block" onclick='selectfunc(this,3)'></div>            
+            <div><img src="image/4block.png" id="i4block" onclick='selectfunc(this,4)'></div>            
+            <div><img src="image/4-2block.png" id="i42block" onclick='selectfunc(this,4)'></div>   
+            <div><img src="image/5block.png" id="i5block" onclick='selectfunc(this,5)'></div>
+        </div>
+    </div>
+    <button id="rotbutton" onclick="rotated()">Rotate</button>
+    
+  </body>
+ 
+</html>

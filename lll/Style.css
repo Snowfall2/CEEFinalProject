@@ -1,0 +1,146 @@
+
+.container {
+  margin-left: 30%;
+  display: flex;
+  width: 100%;
+  margin-top: -21%;
+}
+
+.battleship-grid {
+  margin: 2vmin;
+  display: grid;
+  background-color: hsl(200, 100%, 50%);
+  grid-template-rows: repeat(10, 6vmin);
+  grid-template-columns: repeat(10, 6vmin);
+}
+.battleship-grid div {
+  border: 1px solid hsla(0, 0%, 100%, .2);
+  align-items: center;
+}
+
+.select{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 50px;
+  background-color: #ffffff;
+}
+.select > div{
+  display: grid;
+  grid-template-rows: 180px;
+  background-color: rgb(180, 160, 146);
+}
+#ship{
+  text-align: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns:repeat(3, 400px);
+  grid-template-rows: 85px;
+  grid-gap: 10px;
+}
+#selected{
+  align-items: center;
+  text-align: center;
+  grid-template-rows: 20vmin;
+  margin-top: -60px;
+  margin-left: 10px;
+  grid-template-rows: 28vmin;
+}
+#ship>div{
+  text-align: center;
+  align-items: center;
+  grid-template-rows: 100px;
+  }
+
+#i2block{
+  width:12vmin;
+}
+#i3block{
+  width:16vmin;
+  
+}
+#i4block ,#i42block{
+  width:22vmin;
+}
+#i5block{
+  width:28vmin;
+}
+#rot{
+  transform: rotate(90deg);
+}
+:root{
+    --w:0;
+    --h:0;
+    --c:0;
+   
+}
+#Block:hover{
+  background-color:var(--c);
+  width: calc(var(--w)*(6vmin));
+  height:calc(var(--h)*(6vmin));
+}
+#Blockintake2{
+  background-image: url("image/2block.png");
+  width:200%;
+}
+#Blockintake3{
+  background-image: url("image/3block.png");
+  width: 300%;
+}
+#Blockintake41{
+  background-image: url("image/4block.png");
+  width: 400%;
+}
+#Blockintake42{
+  background-image: url("image/4-2block.png");
+  width: 400%;
+}
+#Blockintake5{
+  background-image: url("image/5block.png" );
+  width: 500%;
+}
+
+#Blockintake2rot{
+  background-image: url("image/2blockrot.png");
+  align-items: center;
+  height: 200%;
+}
+#Blockintake3rot{
+  background-image: url("image/3blockrot.png");
+  align-items: center;
+  height: 300%;
+}
+#Blockintake41rot{
+  background-image: url("image/4blockrot.png");
+  align-items: center;
+  height: 400%;
+}
+#Blockintake42rot{
+  background-image: url("image/4-2blockrot.png");
+  align-items: center;
+  height: 400%;
+}
+#Blockintake5rot{
+  background-image: url('image/5blockrot.png');
+  align-items: center;
+  height: 500%;
+}
+#submit{
+  
+  align-items: center;
+ 
+  margin-top: 10%;
+}
+button{
+  width:100px;
+  height: 60px;
+  margin-left: 130px;
+}
+#submit > button{
+  width:100px;
+  margin-left: 250px;
+  margin-top: 140px;
+  color: rgb(0, 0, 0);
+  background-color: green;
+  font-size: 20px;
+}
+
