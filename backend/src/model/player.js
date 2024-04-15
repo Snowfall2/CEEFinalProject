@@ -7,12 +7,11 @@ const playerSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        immutable: true,
         default: "alive"
     },
     board: { 
-        type: Array,
-        default: Array(10).fill(Array(10).fill(false))
+        type: String,
+        default: "0".repeat(100)
     },
     ship: [Ship]
 })

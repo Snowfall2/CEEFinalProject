@@ -7,7 +7,6 @@ const shipSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        immutable: true,
         default: "alive"
     },
     position: {
