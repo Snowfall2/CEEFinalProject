@@ -27,6 +27,10 @@ router.get('/:lobbyPIN/:player_name', getGame, async (req, res) => {
 
 // Create Lobby
 router.post('/', async (req, res) => {
+    let ck_game = await Game.findOne({ "lobbyPIN": req.body.lobbyPIN })
+    if (ck_game != null)
+        return res.json({ message: "Lobby is already exist" })
+
     const game = new Game({
         lobbyPIN: req.body.lobbyPIN,
         player: req.body.player
@@ -41,13 +45,13 @@ router.post('/', async (req, res) => {
 
 // Create Player (Join Game)
 router.post('/:lobbyPIN', getGame, async (req, res) => {
+    if (res.game.player.length == 4) 
+        return res.json({ message: "Lobby is full" })
+    
     const player = res.game.player.find(player => player.name === req.body.name)
     try {
         if (player != null) {
             return res.json({ message: "Player with this username already exists in this room" })
-        }
-        if (res.game.player.length == 4) {
-            return res.json({ message: "Lobby is full" })
         }
         res.game.player.push({ name: req.body.name })
         const newPlayer = await res.game.save()

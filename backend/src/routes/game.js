@@ -43,9 +43,13 @@ router.post('/:lobbyPIN/deadship', getGame, async (req, res) => {
     try {
         const player = res.game.player.find(player => player.name === req.body.name)
         for (let i = 0; i < player.ship.length; i++) {
+            if (player.ship[i].status === "dead") 
+                continue
+            
             if (!shipIsAlive(player.ship[i].position, player.board)) {
                 deadShip = player.ship
                 res.game.player.find(player => player.name === req.body.name).ship[i].status = "dead"
+                break // We can break because only one ship can be destroyed in one attack
             }
         }
         await res.game.save()
