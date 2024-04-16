@@ -1,0 +1,72 @@
+body {
+    background-color: #333; /* Dark background */
+    color: white;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  .container {
+    width: 75%; /* Takes up half of the screen width */
+    max-width: 1020px; /* Maximum width */
+    background-color: #444; /* Slightly lighter background for the form */
+    padding: 2%; /* Padding relative to the width of the container */
+    padding-top: 150px;
+    padding-bottom: 60px; /* Increased padding at the bottom for spacing */
+    border-radius: 5px;
+    position: relative; /* Needed for absolute positioning of the start button */
+  }
+  .background-image {
+    position: absolute;
+    top: 20px; /* Adjust as needed */
+    left: 0;
+    right: 0;
+    width: 100%; /* Full container width */
+    height: 100px; /* Adjust height as needed */
+    object-fit: cover; /* Ensure the image covers the area */
+    z-index: 1; /* Layer the image below the form elements */
+  }
+  .button-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  button {
+    background-color: #555; /* Lighter grey for buttons */
+    color: white;
+    border: none;
+    padding: 1% 2%;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 45%; /* Buttons take up almost half the container width */
+  }
+  button:hover {
+    background-color: #666; /* Lighten button hover state */
+  }
+  input, label {
+    position: relative; /* Raise above the background image */
+    z-index: 2;
+  }
+  input[type="text"] {
+    width: calc(100% - 4%); /* Full width minus padding */
+    padding: 1%;
+    margin: 10px 0;
+    background-color: #555;
+    border: 1px solid #666;
+    color: white;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  #startButton {
+    position: absolute; /* Position the start button within the container */
+    bottom: 20px; /* Space from the bottom of the container */
+    right: 20px; /* Space from the right of the container */
+    padding: 10px 20px; /* Padding for the start button */
+  }
+  #createGameForm {
+    display: none;
+  }
