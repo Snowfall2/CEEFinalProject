@@ -2,7 +2,7 @@ GET http://localhost:3000/
 
 ###
 
-GET http://localhost:3000/1234
+GET http://localhost:3000/12345
 
 ###
 
@@ -14,16 +14,16 @@ POST http://localhost:3000/
 Content-Type: application/json
 
 {
-    "lobbyPIN": 1234
+    "lobbyPIN": 12345
 }
 
 ###
 
-POST http://localhost:3000/1234
+POST http://localhost:3000/12345
 Content-Type: application/json
 
 {
-    "name": "Kant"
+    "name": "Kla"
 }
 
 ###
