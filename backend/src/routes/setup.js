@@ -24,16 +24,16 @@ router.post('/:lobbyPIN/setup', getGame, async (req, res) => {
                     ck = true
                 }
                 if(req.body.ship[i].position[j]<0 || req.body.ship[i].position[j]>=100)
-                res.json({ message: "Invalid ship placing position" })
+                res.status(400).json({ message: "Invalid ship placing position" })
                 check_dup.push(req.body.ship[i].position[j])
             }
         }
         if(ck) {
-            res.json({ message: "Some ship is overlapped" })
+            res.status(400).json({ message: "Some ship is overlapped" })
         }
         else {
             await res.game.save()
-            res.json({ message: "Ship setup." })
+            res.status(200).json({ message: "Ship setup." })
         }
     } catch (err) {
         res.status(500).json({ message: err.message })
