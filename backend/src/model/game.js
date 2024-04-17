@@ -4,7 +4,7 @@ const Player = require('./player')
 const gameSchema = new mongoose.Schema({
     lobbyPIN: {
         type: Number,
-        require: true
+        required: true
     },
     player: [Player]
 })

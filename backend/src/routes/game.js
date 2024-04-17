@@ -7,12 +7,15 @@ const getGame = require('./middleware')
 router.post('/:lobbyPIN/status', getGame, async (req, res) => {
     try {
         const player = res.game.player.find(player => player.name === req.body.name)
+        if(player == null)
+            return res.status(400).json({ message: "No player name " + req.body.name})
+
         if (player.ship.filter(ship => ship.status === "alive").length == 0) {
             res.game.player.find(player => player.name === req.body.name).status = "dead"
             await res.game.save()
-            return res.json({ message: "This player is dead" })
+            return res.status(200).json({ message: "This player is dead" })
         }
-        return res.json({ message: "This player is alive" })
+        return res.status(200).json({ message: "This player is alive" })
     } catch (err) {
         return res.status(500).json({ message: err.message })
     }
@@ -24,14 +27,25 @@ router.post('/:lobbyPIN/attack', getGame, async (req, res) => {
         name: <player who get attacked>
         position: <int>
      */
-    const pos = req.body.position
     try {
+        const pos = req.body.position
         let board = res.game.player.find(player => player.name === req.body.name).board
         board = board.substring(0, pos) + "1" + board.substring(pos+1)
-        res.game.player.find(player => player.name === req.body.name).board = board
+        player = res.game.player.find(player => player.name === req.body.name)
+        player.board = board
         await res.game.save()
-
-        res.json({ message: "Attack Successfully" })
+        let ck_hit = false
+        ships = player.ship
+        ships.forEach(ship => {
+            ship.position.forEach(position => {
+                if(position == pos)
+                ck_hit = true
+            })
+        });
+        if(ck_hit)
+            res.status(200).json({ message: "Hit" })
+        else
+            res.status(200).json({ message: "Not hit" })
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
@@ -49,7 +63,7 @@ router.post('/:lobbyPIN/deadship', getGame, async (req, res) => {
             }
         }
         await res.game.save()
-        res.json(deadShip)
+        res.status(200).json(deadShip)
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
