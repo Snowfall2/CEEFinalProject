@@ -14,6 +14,6 @@ createGameBtn.addEventListener('click', () => {
 
 startGameBtn.addEventListener('click', () => {
   const gameCode = document.getElementById('join-game-code').value;
-
+  <a href="../lobby/lobby.html">Link Text</a>
   // Perform your join game
 });
