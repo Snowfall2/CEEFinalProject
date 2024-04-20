@@ -26,12 +26,16 @@ router.post('/:lobbyPIN/attack', getGame, async (req, res) => {
      */
     const pos = req.body.position
     try {
-        let board = res.game.player.find(player => player.name === req.body.name).board
-        board = board.substring(0, pos) + "1" + board.substring(pos+1)
+        const player = res.game.player.find(player => player.name === req.body.name)
+        const ship = player.ship 
+        let board = player.board
+        board = board.substring(0, pos) + "1" + board.substring(pos+1) 
+        
         res.game.player.find(player => player.name === req.body.name).board = board
         await res.game.save()
 
-        res.json({ message: "Attack Successfully" })
+        if (hitAShot(pos, ship)) return res.json({ message: "Hit" })
+        return res.json({ message: "Miss" })
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
@@ -65,6 +69,15 @@ function shipIsAlive(shipPosition, playerBoard) {
         
         // 0 - not attacked,  1 - attacked
         if (playerBoard[pos] == 0) return true
+    }
+    return false
+}
+
+function hitAShot(attackPos, ship) {
+    for (let i = 0; i < ship.length; i++) {
+        for (let j = 0; j < ship[i].position.length; j++) {
+            if (attackPos == ship[i].position[j]) return true
+        }
     }
     return false
 }
