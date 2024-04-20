@@ -1,0 +1,201 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    background-color: #1aafe9;
+    font-family: "Sedan", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.95rem;
+}
+
+.bg img {
+    opacity: 0.15;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.command-text {
+    border: 1px solid white;
+    background-color: rgba(218, 246, 255, 0.9);
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.time {
+    border-radius: 50%;
+    color: white;
+    background-color: #4b3c30;
+    padding: 10px 13px;
+    position: absolute;
+    aspect-ratio: 1 / 1;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    top: 3vh;
+    right: 5%;
+}
+
+.board {
+    margin: 20px;
+}
+
+.board p {
+    margin: 5px auto;
+    padding: 6px 0;
+    width: min(80%, 300px);
+    text-align: center;
+}
+
+.description {
+    border: 3px groove#4b3c30;
+    background-color: #d4c3af;
+}
+
+.attack-button {
+    background-color: rgb(207, 50, 50);
+    border: 2px double red;
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.table {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    margin: 10px auto;
+    width: min(80%, 300px);
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgb(108, 212, 250);
+    background-color: rgba(2, 116, 231, 0.223);
+    cursor: pointer;
+}
+
+.table > * {
+    border: 1px solid rgb(35, 188, 243);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.shooted {
+    position: absolute;
+    padding: 20%;
+    border-radius: 50%;
+    left: 30%;
+    background-color: rgb(8, 25, 82);
+    opacity: 0.75;
+    z-index: 2;
+}
+
+.hit {
+    background-color: red;
+}
+
+.miss {
+    background-color: rgb(49, 52, 56);
+}
+
+.table > * .horizontal-img2 {
+    width: 200%;
+    position: absolute;
+    z-index: 1;
+}
+.table > * .horizontal-img3 {
+    width: calc(var(--w)*100%);
+    position: absolute;
+    z-index: 1;
+}
+.table > * .horizontal-img3 {
+    width: 300%;
+    position: absolute;
+    z-index: 1;
+}
+.table > * .horizontal-img4 {
+    width: 400%;
+    position: absolute;
+    z-index: 1;
+}
+.table > * .horizontal-img42 {
+    width: 400%;
+    position: absolute;
+    z-index: 1;
+}
+.table > * .horizontal-img5 {
+    width: 500%;
+    position: absolute;
+    z-index: 1;
+}
+
+.table > * .vertical-img2 {
+    height: 200%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+.table > * .vertical-img3 {
+    height: 300%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+.table > * .vertical-img4 {
+    height: 400%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+.table > * .vertical-img42 {
+    height: 400%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+.table > * .vertical-img5 {
+    height: 500%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+
+@media (min-width: 600px) {
+    .command-text {
+        font-size: 1.1rem;
+    }
+    .battle-board {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .board {
+        display: flex;
+    }
+    .board p {
+        margin: 10px auto;
+    }
+    .tag {
+        width: 35%;
+    }
+    .table {
+        width: 60%;
+    }
+    .b2 > .tag, .b4 > .tag {
+        order: 2;
+    }
+}
+:root{
+    --c : rgba(2, 116, 231, 0.223);
+}
+.table > .block:hover{
+    background-color: var(--c);
+}
