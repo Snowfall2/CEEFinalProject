@@ -1,4 +1,4 @@
-import BACKEND_URL from "./config";
+import { BACKEND_URL } from "./config.js";
 
 export async function getAllGame() {
     return await fetch(`${BACKEND_URL}/`).then(r => r.json())
@@ -12,8 +12,7 @@ export async function getPlayer(lobbyPIN, playerName) {
     return await fetch(`${BACKEND_URL}/${lobbyPIN}/${playerName}`).then(r => r.json())
 }
 
-export async function createLobby(e, lobbyPIN, player) {
-    e.preventDefault()
+export async function createLobby(lobbyPIN, player) {
     // player is an array of length 1
     return await fetch(`${BACKEND_URL}/`, {
         method: 'POST',
@@ -24,8 +23,7 @@ export async function createLobby(e, lobbyPIN, player) {
     }).then(r => r.json())
 }
 
-export async function newPlayer(e, lobbyPIN, playerName) {
-    e.preventDefault()
+export async function newPlayer(lobbyPIN, playerName) {
 
     return await fetch(`${BACKEND_URL}/${lobbyPIN}`, {
         method: 'POST',
