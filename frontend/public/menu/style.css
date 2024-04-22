@@ -1,0 +1,100 @@
+body {
+  background-color: #1aafe9; /* Dark background */
+  color: black;
+  font-family: "Sedan", serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.sedan {
+  font-family: "Sedan", serif;
+  color: black;
+  font-size: 0.9rem;
+}
+
+.container {
+  width: 75%; /* Takes up half of the screen width */
+  max-width: 800px; /* Maximum width */
+  background-color: rgb(199, 249, 255); /* Slightly lighter background for the form */
+  padding: 3%; /* Padding relative to the width of the container */
+  padding-top: 25px;
+  padding-bottom: 60px; /* Increased padding at the bottom for spacing */
+  border-radius: 20px;
+  position: relative; /* Needed for absolute positioning of the start button */
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+}
+
+.background-image {
+  opacity: 0.8;
+  width: min(90%, 348px);
+  object-fit: cover; /* Ensure the image covers the area */
+}
+
+.button-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: white;
+  border: none;
+  padding: 1% 2%;
+  margin: 20px 10px 0 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 5px 0px;
+  width: 45%; /* Buttons take up almost half the container width */
+}
+
+button:hover {
+  background-color: #d2e3e3; /* Lighten button hover state */
+}
+
+input, label {
+  position: relative; /* Raise above the background image */
+  z-index: 2;
+}
+
+input[type="text"] {
+  width: calc(100% - 4%); /* Full width minus padding */
+  padding: 1%;
+  margin: 10px 0;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 5px 0px;
+  border: none;
+  color: black;
+  outline: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+#startButton {
+  position: absolute; /* Position the start button within the container */
+  bottom: 20px; /* Space from the bottom of the container */
+  right: 20px; /* Space from the right of the container */
+  padding: 10px 20px; /* Padding for the start button */
+}
+
+#createGameForm {
+  display: none;
+}
+
+.bg img {
+  opacity: 0.15;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+}

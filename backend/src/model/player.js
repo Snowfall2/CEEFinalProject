@@ -8,13 +8,16 @@ const playerSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: "alive"
+        default: "setup"
     },
     board: { 
         type: String,
         default: "0".repeat(100)
     },
-    ship: [Ship]
+    ship: {
+        type: Array,
+        default: []
+    }
 })
 
 module.exports = playerSchema

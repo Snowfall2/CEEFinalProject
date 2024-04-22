@@ -28,24 +28,17 @@ router.post('/:lobbyPIN/attack', getGame, async (req, res) => {
         position: <int>
      */
     try {
-        const pos = req.body.position
-        let board = res.game.player.find(player => player.name === req.body.name).board
-        board = board.substring(0, pos) + "1" + board.substring(pos+1)
-        player = res.game.player.find(player => player.name === req.body.name)
-        player.board = board
+        const player = res.game.player.find(player => player.name === req.body.name)
+        const ship = player.ship 
+        let board = player.board
+        board = board.substring(0, pos) + "1" + board.substring(pos+1) 
+        
+        res.game.player.find(player => player.name === req.body.name).board = board
+        res.game.player.find(player => player.name === req.body.name).attackedPos = pos
         await res.game.save()
-        let ck_hit = false
-        ships = player.ship
-        ships.forEach(ship => {
-            ship.position.forEach(position => {
-                if(position == pos)
-                ck_hit = true
-            })
-        });
-        if(ck_hit)
-            res.status(200).json({ message: "Hit" })
-        else
-            res.status(200).json({ message: "Not hit" })
+
+        if (hitAShot(pos, ship)) return res.status(200).json({ message: "Hit" })
+        return res.status(200).json({ message: "Miss" })
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
@@ -53,12 +46,12 @@ router.post('/:lobbyPIN/attack', getGame, async (req, res) => {
 
 // Check if there is any dead ship after an attack and update it's status to "dead"
 router.post('/:lobbyPIN/deadship', getGame, async (req, res) => {
+    let deadShip = []
     try {
         const player = res.game.player.find(player => player.name === req.body.name)
-        let deadShip = player.ship
         for (let i = 0; i < player.ship.length; i++) {
             if (!shipIsAlive(player.ship[i].position, player.board)) {
-                deadShip = player.ship
+                deadShip.push(player.ship[i])
                 res.game.player.find(player => player.name === req.body.name).ship[i].status = "dead"
             }
         }
@@ -69,12 +62,32 @@ router.post('/:lobbyPIN/deadship', getGame, async (req, res) => {
     }
 })
 
+// Update rank
+router.post('/:lobbyPIN/rank', getGame, async (req, res) => {
+    try {
+        res.game.rank += 1
+        const newTurn = await res.game.save()
+        res.json(newTurn)
+    } catch (err) {
+        res.status(400).json({ message: err.message })
+    }
+})
+
 function shipIsAlive(shipPosition, playerBoard) {
     for (let i = 0; i < shipPosition.length; i++) {
         const pos = shipPosition[i]
         
         // 0 - not attacked,  1 - attacked
         if (playerBoard[pos] == 0) return true
+    }
+    return false
+}
+
+function hitAShot(attackPos, ship) {
+    for (let i = 0; i < ship.length; i++) {
+        for (let j = 0; j < ship[i].position.length; j++) {
+            if (attackPos == ship[i].position[j]) return true
+        }
     }
     return false
 }

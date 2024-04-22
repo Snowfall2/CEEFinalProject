@@ -1,0 +1,271 @@
+body {
+    box-sizing: border-box;
+    margin: 0;
+    background-color: #1aafe9;
+    font-family: "Sedan", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.bg img {
+    opacity: 0.15;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.command-text {
+    border: 1px solid white;
+    background-color: rgb(218, 246, 255);
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+#timer {
+    border-radius: 50%;
+    color: white;
+    background-color: #4b3c30;
+    padding: 10px;
+    position: absolute;
+    aspect-ratio: 1 / 1;
+    font-weight: 700;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    top: 3vh;
+    right: 5%;
+}
+
+.rotate-img {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 0 10%;
+}
+
+.rotate-img > * {
+    max-height: 170px;
+}
+
+#chosen-ship {
+    width: min(90%, 170px);
+    aspect-ratio: 1 / 1;
+    background-color: #f3cfa4;
+    border: 5px solid #6c3e05;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#chosen-ship img {
+    width: 100%;
+    /* transform: rotate(90deg); */
+}
+
+.button {
+    width: fit-content;
+    padding: 0 10px 0 10px;
+    display: flex;
+    align-items: center;
+    background-color: #80b8a2;
+    border: 2px solid #0d5538;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+#table {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    margin: 20px auto;
+    width: min(80%, 340px);
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgb(108, 212, 250);
+    background-color: rgba(2, 117, 231, 0.223);
+    cursor: pointer;
+}
+
+#table > * {
+    border: 1px solid rgb(35, 188, 243);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#table > * .horizontal-img {
+    width: 400%;
+    position: absolute;
+    z-index: 1;
+}
+
+#table > * .vertical-img {
+    height: 400%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+#select-ship {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px auto;
+    width: min(80%, 340px);
+    gap: 2px;
+}
+
+#select-ship > * {
+    border: 4px solid #a2978a;
+    background-color: #cec8c1;
+    text-align: center;
+    padding: 5px 0;
+    cursor: pointer;
+    align-content: center;
+}
+
+#select-ship > * img {
+    width: 95%;
+    margin: 0 2%;
+    max-height: 100px;
+}
+
+.warning {
+    font-size: 1.5rem;
+    color: red;
+}
+
+
+@media (min-width: 640px) {
+    .command-text {
+        font-size: 1.1rem;
+    }
+    .setup {
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
+    .rotate-img {
+        display: block;
+        margin: 20px 5vw;
+    }
+    .button {
+        margin: 15px 0;
+        width: min(90%, 150px);
+        justify-content: center;
+    }
+    #table {
+        width: 400px;
+    }
+    #select-ship {
+        grid-template-columns: repeat(6, 1fr);
+        grid-column: span 2;
+        width: min(90%, 730px);
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 940px) {
+    .command-text {
+        font-size: 1.25em;
+    }
+    .setup {
+        display: grid;
+        grid-template-columns: 25% 42% 1fr;
+    }
+    #table {
+        width: 85%;
+    }
+    #select-ship {
+        margin: 20px auto;
+        grid-template-columns: 1fr 1fr;
+        grid-column: span 1;
+        height: 60%;
+        gap : 10px;
+    }
+}
+:root{
+    --c:  rgba(2, 117, 231, 0);
+    --w:1;
+    --h:1;
+}
+#block:hover{
+    background-color: var(--c);
+    width: calc(var(--w)*100%);
+    height: calc(var(--h)*100%);
+}
+#rot{
+    transform: rotate(90deg);
+}
+#table > * #i2{
+    width: 200%;
+    position: absolute;
+    z-index: 1;
+}
+#table > * #i3{
+    width: 300%;
+    position: absolute;
+    z-index: 1;
+}
+#table > * #i32{
+    width: 300%;
+    position: absolute;
+    z-index: 1;
+}
+#table > * #i4{
+    width: 400%;
+    position: absolute;
+    z-index: 1;
+}
+#table > * #i42{
+    width:400%;
+    position: absolute;
+    z-index: 1;
+}
+#table > * #i5{
+    width:500%;
+    position: absolute;
+    z-index: 1;
+}
+#table > * #i2V{
+    height: 200%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+#table > * #i3V{
+    height: 300%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+#table > * #i32V{
+    height: 300%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+#table > * #i4V{
+    height: 400%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+#table > * #i42V{
+    height: 400%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+#table > * #i5V{
+    height: 500%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}

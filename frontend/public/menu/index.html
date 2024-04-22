@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battleship (Click to Win!)</title>
+  <link rel="icon" type="image/png" href="../img/icon.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="logo-container">
+      <img src="logo.png" class="background-image">
+    </div>
+    <div class="button-container">
+      <button id="joinGameBtn" class="sedan">Join Game</button>
+      <button id="createGameBtn" class="sedan">Create Game</button>
+    </div>
+    <form id="joinGameForm">
+      <label for="username">Enter Username:</label>
+      <input type="text" id="joingame-username" name="username" autocomplete="off">
+      <label for="gamepin">Enter Lobby PIN:</label>
+      <input type="text" id="joingame-gamepin" name="gamepin" autocomplete="off">
+    </form>
+    <form id="createGameForm" style="display: none;">
+      <label for="username">Enter Username:</label>
+      <input type="text" id="create-username" name="username" autocomplete="off">
+      <label for="gamepin">Create Lobby PIN:</label>
+      <input type="text" id="create-gamepin" name="gamepin" autocomplete="off">
+    </form>
+    <button id="startButton" class="sedan">START</button>
+    <p style="color: red;"></p>
+  </div>
+
+  <div class="bg"><img src="../img/wide.jpg" alt=""></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

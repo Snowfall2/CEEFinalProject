@@ -3,7 +3,6 @@ const router = express.Router()
 const Game = require('../model/game')
 
 const getGame = require('./middleware')
-const { Collection } = require('mongoose')
 
 // Get All Lobby (To check if the PIN already exists)
 router.get('/', async (req, res) => {
@@ -46,13 +45,13 @@ router.post('/', async (req, res) => {
 
 // Create Player (Join Game)
 router.post('/:lobbyPIN', getGame, async (req, res) => {
+    if (res.game.player.length == 4) 
+        return res.json({ message: "Lobby is full" })
+    
     const player = res.game.player.find(player => player.name === req.body.name)
     try {
         if (player != null) {
             return res.status(400).json({ message: "Player with this username already exists in this room" })
-        }
-        if (res.game.player.length == 4) {
-            return res.status(400).json({ message: "Lobby is full" })
         }
         res.game.player.push({ name: req.body.name })
         const newPlayer = await res.game.save()
