@@ -237,8 +237,7 @@ changeTableColor();
 popme()
 
 
-if(mystatus){//---------------------if alive
-    document.getElementsByClassName('command-text')[0].innerHTML = "Player "+ (turn+1)+"'s turn to attack"
+if(mystatus){//---------------------if  
 
     if(me != 2){
         document.getElementsByClassName('tag')[2].childNodes[1].textContent =  "Player 3's board";
