@@ -16,7 +16,7 @@ router.post('/:lobbyPIN/setup', getGame, async (req, res) => {
         res.game.player.find(player => player.name === req.body.name).ship = req.body.ship
         res.game.player.find(player => player.name === req.body.name).status = "ready"
         await res.game.save()
-        res.json({ message: "Ship setup." })
+        res.status(200).json({ message: "Ship setup." })
     } catch (err) {
         res.status(500).json({ message: err.message })
     }

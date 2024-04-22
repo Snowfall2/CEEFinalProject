@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battleship</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <img src="../images/logo.png" class="background-image">
+    <div class="button-container">
+      <button id="joinGameBtn">Join Game</button>
+      <button id="createGameBtn">Create Game</button>
+    </div>
+    <form id="joinGameForm">
+      <label for="username">Enter Username:</label>
+      <input type="text" id="username" name="username">
+      <label for="gamepin">Enter GamePIN:</label>
+      <input type="text" id="gamepin" name="gamepin">
+    </form>
+    <form id="createGameForm" style="display: none;">
+      <label for="username">Enter Username:</label>
+      <input type="text" id="username" name="username">
+      <label for="gamepin">Create GamePIN:</label>
+      <input type="text" id="gamepin" name="gamepin">
+    </form>
+    <button id="startButton">Start</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

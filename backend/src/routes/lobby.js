@@ -7,19 +7,19 @@ const getGame = require('./middleware')
 // Get All Lobby (To check if the PIN already exists)
 router.get('/', async (req, res) => {
     const game = await Game.find()
-    res.json(game)
+    res.status(200).json({"lobby" : game})
 })
 
 // Find Lobby
 router.get('/:lobbyPIN', getGame, (req, res) => {
-    res.json(res.game)
+    res.status(200).json(res.game)
 })   
 
 // Find Player 
 router.get('/:lobbyPIN/:player_name', getGame, async (req, res) => {
     try {
         const player = res.game.player.find(player => player.name === req.params.player_name)
-        res.json(player)
+        res.status(200).json(player)
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
@@ -28,8 +28,8 @@ router.get('/:lobbyPIN/:player_name', getGame, async (req, res) => {
 // Create Lobby
 router.post('/', async (req, res) => {
     let ck_game = await Game.findOne({ "lobbyPIN": req.body.lobbyPIN })
-    if (ck_game != null)
-        return res.json({ message: "Lobby is already exist" })
+    if(ck_game != null)
+    return res.status(400).json({ message: "Lobby is already exist" })
 
     const game = new Game({
         lobbyPIN: req.body.lobbyPIN,
@@ -50,12 +50,12 @@ router.post('/:lobbyPIN', getGame, async (req, res) => {
     
     const player = res.game.player.find(player => player.name === req.body.name)
     try {
-        if (player != null)
-            return res.json({ message: "Player with this username already exists in this room" })
-        
+        if (player != null) {
+            return res.status(400).json({ message: "Player with this username already exists in this room" })
+        }
         res.game.player.push({ name: req.body.name })
         const newPlayer = await res.game.save()
-        res.json(newPlayer)
+        res.status(201).json(newPlayer)
     } catch (err) {
         res.status(400).json({ message: err.message })
     }
@@ -65,7 +65,7 @@ router.post('/:lobbyPIN', getGame, async (req, res) => {
 router.delete('/:lobbyPIN', getGame, async (req, res) => {
     try {
         await res.game.deleteOne()
-        res.json({ message: "Deleted Game" })
+        res.status(200).json({ message: "Deleted Lobby '" + req.params.lobbyPIN + "'"})
     } catch (err) {
         res.status(500).json({ message: err.message })
     }
@@ -76,7 +76,7 @@ router.delete('/:lobbyPIN/:player_name', getGame, async (req, res) => {
     try {
         res.game.player = res.game.player.filter(player => player.name !== req.params.player_name)
         const updatePlayer = await res.game.save()
-        res.json(updatePlayer)
+        res.status(200).json(updatePlayer)
     } catch (err) {
         res.status(500).json({ message: err.message })
     }

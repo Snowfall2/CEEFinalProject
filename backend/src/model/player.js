@@ -4,6 +4,7 @@ const Ship = require('./ship')
 const playerSchema = new mongoose.Schema({
     name: {
         type: String,
+        required: true
     },
     status: {
         type: String,
