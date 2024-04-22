@@ -1,6 +1,6 @@
-import BACKEND_URL from "./config";
+import { BACKEND_URL } from "./config.js";
 
-export async function setupShips(lobbyPIN, playerName, ship) {
+export default async function setupShips(lobbyPIN, playerName, ship) {
     return await fetch(`${BACKEND_URL}/${lobbyPIN}/setup`, {
         method: 'POST',
         headers: {

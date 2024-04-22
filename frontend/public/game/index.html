@@ -10,6 +10,7 @@
     <title>Battle</title>
 </head>
 <body>
+    <script type="module" src="app.js"></script>
     <header>
         <p class="command-text">Player 3's turn to attack</p>
     </header>
@@ -51,7 +52,7 @@
         <div class="board b3">
             <div class="tag">
                 <p class="description">Your board</p>
-                <p class="attack-button" onclick="attack()">ATTACK</p>
+                <p class="attack-button">ATTACK</p>
             </div>
             <div class="table">
                 <div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div>
@@ -87,6 +88,12 @@
     </div>
     <div class="bg"><img src="../img/wide.jpg" alt=""></div>
 
-    <script src="app.js"></script>
+    <div class="game-over">
+        <div class="container">
+            <p class="rank">You finished at rank : </p>
+            <button class="new-game">New Game</button>
+        </div>
+    </div>
+
 </body>
 </html>

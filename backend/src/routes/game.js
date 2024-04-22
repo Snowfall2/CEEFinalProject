@@ -32,6 +32,7 @@ router.post('/:lobbyPIN/attack', getGame, async (req, res) => {
         board = board.substring(0, pos) + "1" + board.substring(pos+1) 
         
         res.game.player.find(player => player.name === req.body.name).board = board
+        res.game.player.find(player => player.name === req.body.name).attackedPos = pos
         await res.game.save()
 
         if (hitAShot(pos, ship)) return res.json({ message: "Hit" })
@@ -43,23 +44,30 @@ router.post('/:lobbyPIN/attack', getGame, async (req, res) => {
 
 // Check if there is any dead ship after an attack and update it's status to "dead"
 router.post('/:lobbyPIN/deadship', getGame, async (req, res) => {
-    let deadShip
+    let deadShip = []
     try {
         const player = res.game.player.find(player => player.name === req.body.name)
         for (let i = 0; i < player.ship.length; i++) {
-            if (player.ship[i].status === "dead") 
-                continue
-            
             if (!shipIsAlive(player.ship[i].position, player.board)) {
-                deadShip = player.ship
+                deadShip.push(player.ship[i])
                 res.game.player.find(player => player.name === req.body.name).ship[i].status = "dead"
-                break // We can break because only one ship can be destroyed in one attack
             }
         }
         await res.game.save()
         res.json(deadShip)
     } catch (err) {
         res.status(500).json({ message: err.message })
+    }
+})
+
+// Update rank
+router.post('/:lobbyPIN/rank', getGame, async (req, res) => {
+    try {
+        res.game.rank += 1
+        const newTurn = await res.game.save()
+        res.json(newTurn)
+    } catch (err) {
+        res.status(400).json({ message: err.message })
     }
 })
 

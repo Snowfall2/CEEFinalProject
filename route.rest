@@ -28,6 +28,10 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:3000/1234/turn
+
+###
+
 DELETE http://localhost:3000/1234554
 
 ###
@@ -42,14 +46,7 @@ Content-Type: application/json
 {
     "name": "Kant",
     "ship": [
-        {
-            "name": "Freegate",
-            "position": [7, 8, 9]  
-        },
-        {
-            "name": "Submarine",
-            "position": [3, 4, 5]
-        }
+        [[7,8], [5,6,7]]
     ]
 }        
 

@@ -20,6 +20,10 @@ app.get('/lobby', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'lobby', 'index.html'));
 });
 
+app.get('/setup', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'setup', 'index.html'));
+});
+
 app.get('/game', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'game', 'index.html'));
 });

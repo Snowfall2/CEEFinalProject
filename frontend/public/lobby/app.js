@@ -10,18 +10,20 @@ document.getElementById('username').textContent = "Your Username : " + window.at
 document.getElementById('lobbypin').textContent = "Lobby PIN : " + myPIN
 
 let isNavigating = false;
-let playerCount = 0;
 
-window.addEventListener('unload', function(e) {
-    if (!isNavigating) {
-        // User is navigating away from the page
-        e.preventDefault()
-        if (playerCount == 1)
-            u.deleteGame(parseInt(myPIN))
-        else u.deletePlayer(parseInt(myPIN), window.atob(myName))
-        return ''
-    }
-});
+const data = await u.getLobby(parseInt(myPIN))
+let playerCounted = data.player.length;
+
+// window.addEventListener('unload', function(e) {
+//     if (!isNavigating) {
+//         // User is navigating away from the page
+//         e.preventDefault()
+//         if (playerCount == 1)
+//             u.deleteGame(parseInt(myPIN))
+//         else u.deletePlayer(parseInt(myPIN), window.atob(myName))
+//         return ''
+//     }
+// });
 
 document.addEventListener('click', function(event) {
     const target = event.target
@@ -33,7 +35,7 @@ document.addEventListener('click', function(event) {
 
 setInterval(async function() {
     const data = await u.getLobby(parseInt(myPIN))
-    playerCount = data.player.length
+    let playerCount = data.player.length
     if (playerCount == 4)
-        console.log('ready')
+        window.location.href = `/setup?lobbyPIN=${myPIN}&name=${myName}&id=${playerCounted}`
 }, 500)

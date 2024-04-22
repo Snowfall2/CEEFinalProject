@@ -1,4 +1,4 @@
-import BACKEND_URL from "./config";
+import { BACKEND_URL } from "./config.js";
 
 export async function updateStatus(lobbyPIN, playerName) {
     return await fetch(`${BACKEND_URL}/${lobbyPIN}/status`, {
@@ -31,4 +31,10 @@ export async function getDeadship(lobbyPIN, playerName) {
         body: JSON.stringify({ name: playerName })
     }).then(r => r.json())
     .catch(err => console.error(err))
+}
+
+export async function updateRank(lobbyPIN) {
+    return await fetch(`${BACKEND_URL}/${lobbyPIN}/rank`, {
+        method: 'POST'
+    }).then(r => r.json())
 }
